@@ -1,11 +1,12 @@
 import './App.css';
-import Password from './password';
+import Password from './components/password';
 
 import React, { Component } from 'react';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducers from './reducers'
-import PasswordList from './password-list';
+import PasswordList from './components/password-list';
+import PasswordStrength from './components/password-strength';
 const store = createStore(reducers)
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
     <Provider store={store}>
       <div className="App">
         <Password />
+        <PasswordStrength />
         <PasswordList />
       </div>
     </Provider>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addPassword } from './actions'
+import { addPassword } from '../actions'
 var randomWords = require('random-words');
 
 
