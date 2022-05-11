@@ -1,15 +1,9 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addPassword } from '../actions'
+import PasswordStrength from './password-strength';
+import randomColor from "randomcolor";
 var randomWords = require('random-words');
-
-
-function generatePassword() {
-  // generate a password here
-  console.log("generating password")
-  let newPassword = (randomWords({exactly: 4, join: '-'}))
-  console.log(newPassword)
-}
 
 function Password() {
   const dispatch = useDispatch()
@@ -23,12 +17,12 @@ function Password() {
     console.log("generating password")
     let newPassword = randomWords({exactly: 4, join: '-'})
     console.log(newPassword)
-    setPassword(password);
+    setPassword(newPassword);
   }
  
   return (
-    <div>
-      <div>
+    <div style={{height: '40vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+      <div style={{margin: '40px'}}>
         {/* NAME OF PASSWORD */}
         <input
           value={name}
@@ -39,21 +33,23 @@ function Password() {
           onChange={(e) => setPassword(e.target.value)}
           value={password}
         />
-      </div>
         {/* BUTTON TO SAVE */}
-      <div>
         <button onClick={(e) => {
           dispatch(addPassword(name, password))
         }}>Save</button>
       </div>
 
 
-      <div>{password}</div>
+      <div><strong>{password}</strong></div>
       <div>
-        <button onClick={(e) => {
+        <button
+        style={{backgroundColor: randomColor(), borderRadius: '10px', margin: '10px', padding: '10px', width: '200px', fontSize: '1.2em'}}
+        onClick={(e) => {
           generatePassword()
-        }}>Generate</button>
+        }}>Generate Password</button>
       </div>
+
+      <PasswordStrength password={password} />
     </div>
   )
 }

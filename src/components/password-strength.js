@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import zxcvbn from 'zxcvbn';
 
-function PasswordStrength() {
+function PasswordStrength(props) {
 
-  let strength = (zxcvbn('p@$5word'))
+  const {password} = props
+
+  let strength = (zxcvbn(password))
 
   return (
     <div>
